@@ -7,13 +7,18 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs
+  IonTabs,
+  IonFabButton,
+  IonFab
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import {ellipse, home, square, triangle, cart, newspaperOutline, mailOutline, personOutline, arrowForwardCircle} from 'ionicons/icons';
+import Home from './pages/Home';
+import Profile from './pages/Profile';
+import Orders from './pages/Orders';
+import Articles from './pages/Articles';
+import Settings from './pages/Settings';
+import Messages from './pages/Messages';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -33,29 +38,51 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Article from "./pages/Article";
+import Order from './pages/Order';
+import Prescriptions from "./pages/Prescriptions";
+import Product from './pages/Product';
+import Products from './pages/Products';
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route path="/tab1" component={Tab1} exact={true} />
-          <Route path="/tab2" component={Tab2} exact={true} />
-          <Route path="/tab3" component={Tab3} />
-          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
+          <Route path="/home" component={Home} exact={true} />
+          <Route path="/messages" component={Messages} exact={true} />
+          <Route path="/articles" component={Articles} exact={true} />
+          <Route path="/orders" component={Orders} exact={true} />
+          <Route path="/orders/:id" component={Order} exact={true} />
+          <Route path="/profile/settings" component={Settings} exact={true} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/prescriptions" component={Prescriptions} />
+          <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
+          <Route path="/articles/:id" component={Article} />
+          <Route path="/products/:id" component={Product} />
+          <Route path="/products" component={Products} />
+
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+          <IonTabButton tab="home" href="/home">
+            <IonIcon icon={home} />
+            <IonLabel>الرئيسية</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+          <IonTabButton tab="orders" href="/orders">
+            <IonIcon icon={cart} />
+            <IonLabel>طلباتي</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="articles" href="/articles">
+            <IonIcon icon={newspaperOutline} />
+            <IonLabel>مقالات</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="messages" href="/messages">
+            <IonIcon icon={mailOutline} />
+            <IonLabel>الرسائل</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="profile" href="/profile">
+            <IonIcon icon={personOutline} />
+            <IonLabel>حسابي</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
